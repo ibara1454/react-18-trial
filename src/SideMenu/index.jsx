@@ -17,14 +17,14 @@ const SideMenu = () => {
           <NavLink to="/suspense_example/suspense">Suspense</NavLink>
         </li>
       </ul>
-      <p className="text-gray-400 text-lg font-bold uppercase">
+      {/* <p className="text-gray-400 text-lg font-bold uppercase">
         Transition Example
       </p>
       <ul className="m-8 flex flex-col gap-8">
         <li>
           <NavLink to="/transition_example">Example</NavLink>
         </li>
-      </ul>
+      </ul> */}
     </aside>
   );
 };

@@ -126,7 +126,7 @@ const SuspendedImage = () => {
 const ShopItem = () => {
   return (
     <RecoilRoot>
-      <div className="flex font-sans bg-slate-100 rounded-2xl overflow-hidden">
+      <div className="flex font-sans bg-slate-100 rounded-2xl overflow-hidden w-max h-max">
         <Image />
         <form className="flex-auto p-6">
           <ItemDetails />

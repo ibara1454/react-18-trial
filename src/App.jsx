@@ -3,32 +3,37 @@ import SuspenseExampleStatic from "./SuspenseExample/Static";
 import SuspenseExampleStandard from "./SuspenseExample/Standard";
 import SuspenseExampleSuspense from "./SuspenseExample/Suspense";
 import SideMenu from "./SideMenu";
+import Home from "./Home";
 
-function App() {
+const App = () => {
   return (
     <BrowserRouter>
       <div className="min-h-screen bg-zinc-900 flex">
         <SideMenu />
-        <main className="flex-auto flex justify-center items-center">
+        <main className="flex-1 text-gray-200 p-8">
           <Routes>
-            <Route path="/" element={<SuspenseExampleStatic />} />
+            <Route path="/" element={<Home />} />
             <Route
-              path="/suspense_example/"
-              element={<SuspenseExampleStatic />}
-            />
-            <Route
-              path="/suspense_example/standard"
-              element={<SuspenseExampleStandard />}
-            />
-            <Route
-              path="/suspense_example/suspense"
-              element={<SuspenseExampleSuspense />}
-            />
+              path="/suspense_example/*"
+              element={<SuspenseExamples />}
+            ></Route>
           </Routes>
         </main>
       </div>
     </BrowserRouter>
   );
-}
+};
+
+const SuspenseExamples = () => {
+  return (
+    <div className="h-full flex justify-center items-center">
+      <Routes>
+        <Route path="" element={<SuspenseExampleStatic />} />
+        <Route path="standard" element={<SuspenseExampleStandard />} />
+        <Route path="suspense" element={<SuspenseExampleSuspense />} />
+      </Routes>
+    </div>
+  );
+};
 
 export default App;

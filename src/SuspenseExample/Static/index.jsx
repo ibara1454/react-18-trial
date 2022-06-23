@@ -3,7 +3,7 @@ import { itemDetail } from "../data";
 
 const ShopItem = () => {
   return (
-    <div className="flex font-sans bg-slate-100 rounded-2xl overflow-hidden">
+    <div className="flex font-sans bg-slate-100 rounded-2xl overflow-hidden w-max h-max">
       <div className="flex-none w-48 relative">
         <img
           src={itemDetail.imageUrl}

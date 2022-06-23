@@ -2,7 +2,12 @@ import { NavLink } from "react-router-dom";
 
 const SideMenu = () => {
   return (
-    <aside className="w-96 bg-slate-100 p-4 overflow-auto">
+    <aside className="flex-none w-96 bg-slate-100 p-4 overflow-auto">
+      <ul className="m-8 flex flex-col gap-8">
+        <li>
+          <NavLink to="/">Home</NavLink>
+        </li>
+      </ul>
       <p className="text-gray-400 text-lg font-bold uppercase">
         Suspense Data Fetching Example
       </p>

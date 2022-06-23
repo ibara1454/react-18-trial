@@ -1,8 +1,7 @@
-import ReactCodeMirror from "@uiw/react-codemirror";
-import { javascript } from "@codemirror/lang-javascript";
-import ShopItem from "./ShopItem";
+import React from "react";
+import { itemDetail } from "../data";
 
-const code = `const ShopItem = () => {
+const ShopItem = () => {
   return (
     <div className="flex font-sans bg-slate-100 rounded-2xl overflow-hidden w-max h-max">
       <div className="flex-none w-48 relative">
@@ -121,29 +120,5 @@ const code = `const ShopItem = () => {
     </div>
   );
 };
-`;
 
-const CodeSnippet = () => {
-  return (
-    <ReactCodeMirror
-      value={code}
-      height="600px"
-      width="100%"
-      theme="dark"
-      extensions={[javascript({ jsx: true })]}
-    />
-  );
-};
-
-export default () => {
-  return (
-    <div className="flex gap-8 w-full">
-      <div className="flex-1 flex justify-center items-center">
-        <ShopItem />
-      </div>
-      <div className="flex-1 rounded-2xl overflow-hidden">
-        <CodeSnippet />
-      </div>
-    </div>
-  );
-};
+export default ShopItem;

@@ -10,7 +10,7 @@ const App = () => {
     <BrowserRouter>
       <div className="min-h-screen bg-zinc-900 flex">
         <SideMenu />
-        <main className="flex-1 text-gray-200 p-8">
+        <main className="flex-1 text-gray-200 p-8 overflow-hidden">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route

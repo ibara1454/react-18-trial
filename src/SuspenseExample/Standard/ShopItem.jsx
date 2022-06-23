@@ -1,30 +1,133 @@
-import ReactCodeMirror from "@uiw/react-codemirror";
-import { javascript } from "@codemirror/lang-javascript";
-import ShopItem from "./ShopItem";
+import { useFetch } from "./model";
 
-const code = `const ShopItem = () => {
+const ItemDetails = () => {
+  const { data } = useFetch();
+
+  if (data) {
+    return (
+      <div className="flex flex-wrap">
+        <ItemName name={data.name} />
+        <ItemPrice price={data.price} />
+        <ItemStatus status={data.status} />
+      </div>
+    );
+  }
+
   return (
-    <div className="flex font-sans bg-slate-100 rounded-2xl overflow-hidden w-max h-max">
-      <div className="flex-none w-48 relative">
+    <div className="flex flex-wrap">
+      <PendingItemName />
+      <PendingItemPrice />
+      <PendingItemStatus />
+    </div>
+  );
+};
+
+const PendingItemName = () => {
+  return (
+    <div className="mr-auto h-6 flex items-center">
+      <div className="animate-pulse h-3 w-36 bg-slate-700 rounded-full"></div>
+    </div>
+  );
+};
+
+const ItemName = ({ name }) => {
+  return (
+    <h1 className="flex-auto text-lg align-middle font-semibold text-slate-900">
+      {name}
+    </h1>
+  );
+};
+
+const PendingItemPrice = () => {
+  return (
+    <div className="h-6 flex items-center">
+      <div className="animate-pulse h-3 w-12 bg-slate-700 rounded-full"></div>
+    </div>
+  );
+};
+
+const ItemPrice = ({ price }) => {
+  return (
+    <div className="text-lg align-middle font-semibold text-slate-500">
+      {price}
+    </div>
+  );
+};
+
+const PendingItemStatus = () => {
+  return (
+    <div className="w-full h-6 flex-none flex items-center">
+      <div className="animate-pulse h-3 w-24 bg-slate-700 rounded-full"></div>
+    </div>
+  );
+};
+
+const ItemStatus = ({ status }) => {
+  return (
+    <div className="w-full flex-none align-middle text-sm font-medium text-slate-700">
+      {status}
+    </div>
+  );
+};
+
+const Image = () => {
+  const { data } = useFetch();
+
+  if (data) {
+    return (
+      <div className="flex-none w-48 relative flex items-center justify-center">
         <img
-          src={itemDetail.imageUrl}
+          src={data.imageUrl}
           alt=""
           className="absolute inset-0 w-full h-full object-cover"
           loading="lazy"
         />
       </div>
+    );
+  }
+
+  return (
+    <div className="flex-none w-48 relative flex items-center justify-center">
+      <PendingImage />
+    </div>
+  );
+};
+
+const PendingImage = () => {
+  // Reference: https://codepen.io/nikhil8krishnan/pen/rVoXJa
+  return (
+    <svg
+      className="text-slate-700"
+      version="1.1"
+      xmlns="http://www.w3.org/2000/svg"
+      width="150"
+      height="150"
+      viewBox="0 0 100 100"
+    >
+      <path
+        fill="currentColor"
+        d="M73,50c0-12.7-10.3-23-23-23S27,37.3,27,50 M30.9,50c0-10.5,8.5-19.1,19.1-19.1S69.1,39.5,69.1,50"
+      >
+        <animateTransform
+          attributeName="transform"
+          attributeType="XML"
+          type="rotate"
+          dur="1.5s"
+          from="0 50 50"
+          to="360 50 50"
+          repeatCount="indefinite"
+        />
+      </path>
+    </svg>
+  );
+};
+
+const ShopItem = () => {
+  return (
+    <div className="flex font-sans bg-slate-100 rounded-2xl overflow-hidden w-max h-max">
+      <Image />
       <form className="flex-auto p-6">
-        <div className="flex flex-wrap">
-          <h1 className="flex-auto text-lg align-middle font-semibold text-slate-900">
-            {itemDetail.name}
-          </h1>
-          <div className="text-lg align-middle font-semibold text-slate-500">
-            {itemDetail.price}
-          </div>
-          <div className="w-full flex-none align-middle text-sm font-medium text-slate-700">
-            {itemDetail.status}
-          </div>
-        </div>
+        <ItemDetails />
         <div className="flex mt-4 mb-6 pb-6 border-b border-slate-200">
           <div className="space-x-2 flex text-sm">
             <label className="cursor-pointer">
@@ -121,29 +224,5 @@ const code = `const ShopItem = () => {
     </div>
   );
 };
-`;
 
-const CodeSnippet = () => {
-  return (
-    <ReactCodeMirror
-      value={code}
-      height="600px"
-      width="100%"
-      theme="dark"
-      extensions={[javascript({ jsx: true })]}
-    />
-  );
-};
-
-export default () => {
-  return (
-    <div className="flex gap-8 w-full">
-      <div className="flex-1 flex justify-center items-center">
-        <ShopItem />
-      </div>
-      <div className="flex-1 rounded-2xl overflow-hidden">
-        <CodeSnippet />
-      </div>
-    </div>
-  );
-};
+export default ShopItem;
